@@ -1130,9 +1130,9 @@ int MPI_Group_incl(MPI_Group group, int n, int *ranks,
 int MPI_Group_intersection(MPI_Group group1, MPI_Group group2,
                            MPI_Group *newgroup);
 //TODO array...
-int MPI_Group_range_excl(MPI_Group group, int n, int ranges[][3],
+int MPI_Group_range_excl(MPI_Group group, int n, int[3][] ranges,
                          MPI_Group *newgroup);
-int MPI_Group_range_incl(MPI_Group group, int n, int ranges[][3],
+int MPI_Group_range_incl(MPI_Group group, int n, int[3][] ranges,
                          MPI_Group *newgroup);
 int MPI_Group_rank(MPI_Group group, int *rank);
 int MPI_Group_size(MPI_Group group, int *size);
@@ -1258,9 +1258,9 @@ int MPI_Status_set_cancelled(MPI_Status *status, int flag);
 int MPI_Status_set_elements(MPI_Status *status, MPI_Datatype datatype,
                             int count);
 //TODO arrays...
-int MPI_Testall(int count, MPI_Request array_of_requests[], int *flag,
+int MPI_Testall(int count, MPI_Request[] array_of_requests, int *flag,
                 MPI_Status array_of_statuses[]);
-int MPI_Testany(int count, MPI_Request array_of_requests[], int *index,
+int MPI_Testany(int count, MPI_Request[] array_of_requests, int *index,
                 int *flag, MPI_Status *status);
 int MPI_Test(MPI_Request *request, int *flag, MPI_Status *status);
 int MPI_Test_cancelled(MPI_Status *status, int *flag);
