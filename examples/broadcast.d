@@ -16,7 +16,7 @@ This is a simple broadcast program in MPI
 
 int main(string[] args)
 {
-    int argc = args.length;
+    int argc = cast(int)args.length;
     const char** argv = array(map!toStringz(args)).ptr;
 
     int i,myid, numprocs;

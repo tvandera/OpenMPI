@@ -16,7 +16,7 @@ import mpi;
 
 int main(string[] args)
 {
-    int argc = args.length;
+    int argc = cast(int)args.length;
     const char** argv = array(map!toStringz(args)).ptr;
 
     int myid, numprocs;

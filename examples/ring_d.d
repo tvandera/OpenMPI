@@ -15,7 +15,7 @@ import mpi;
 
 int main(string[] args)//int argc, char *argv[])
 {
-    int argc = args.length;
+    int argc = cast(int)args.length;
     const char** argv = array(map!toStringz(args)).ptr;
 
     int rank, size, next, prev, message, tag = 201;

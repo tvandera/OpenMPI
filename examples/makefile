@@ -1,9 +1,9 @@
 DC:=dmd
 DFLAGS=-g -debug
 IMPORTS=-I../
-LIBS=-L-lpthread -L-lmpi -L-lopen-rte -L-lopen-pal -L-ldl -L-E -L-lnsl -L-lutil -L-lm -L-ldl
+LIBS=-L-lmpi
 SOURCES=hello_d ring_d connectivity_d master_slave master_slave2 \
-master_slave_Dstrings derived probe broadcast scatterGather scatterReduce \
+master_slave_Dstrings probe broadcast scatterGather scatterReduce \
 alltoall newCommunicator typeVector communicatorCollection gatherv
 
 

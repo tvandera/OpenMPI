@@ -13,7 +13,7 @@ import mpi;
 int main(string[] args)
 {   //Converts D-style args to C-style.
     //pretty decent, since MPI will pass this along to the other processes
-    int argc = args.length;
+    int argc = cast(int)args.length;
     const char** argv = array(map!toStringz(args)).ptr;
 
     int numprocs, rank, namelen;
