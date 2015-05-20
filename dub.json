@@ -1,0 +1,9 @@
+{
+    "name": "mpi",
+    "authors": ["Jude Young", "John Colvin"],
+    
+    "importPaths": ["."],
+    "targetType": "sourceLibrary",
+    "libs": ["mpi", "event", "event_pthreads"],
+    "lflags": ["-L/usr/local/opt/libevent/lib"]
+}
