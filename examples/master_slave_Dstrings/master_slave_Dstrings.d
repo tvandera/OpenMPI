@@ -1,11 +1,11 @@
 //Courtesy of Wikipedia and "My Lawyer!!"
 
 import std.stdio;
-import std.c.stdio;
+import core.stdc.stdio;
 import std.array;
 import std.algorithm;
 import std.string;
-import std.c.string;
+import core.stdc.string;
 import mpi;
 
 int main(string[] args)

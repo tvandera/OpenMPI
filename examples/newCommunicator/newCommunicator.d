@@ -12,8 +12,8 @@
 ! subroutine pass_token.  The remaining processor gets input, i, from the terminal
 ! and passes it to processor 1 of MPI_COMM_WORLD.  If i > 100 the program stops
 *****/
-import std.c.stdio;
-import std.c.stdlib;
+import core.stdc.stdio;
+import core.stdc.stdlib;
 import std.algorithm;
 import std.array;
 import std.string;
@@ -22,11 +22,11 @@ import mpi;
 
 /* global variables */
 int numnodes, myid, mpi_err;
-immutable mpi_root = 0;
+enum mpi_root = 0;
 /* end of global variables  */
 
 
-void init_it(int  *argc, in char ***argv)
+void init_it(int* argc, in char*** argv)
 {
     mpi_err = MPI_Init(argc,argv);
     mpi_err = MPI_Comm_size( MPI_COMM_WORLD, &numnodes );
@@ -42,12 +42,10 @@ int main(string[] args)
     int* will_use;
     MPI_Comm TIMS_COMM_WORLD;
     MPI_Group new_group, old_group;
-    int ijk,  used_id;
-    int num_used = 0;
+    int num_used, used_id;
 
     init_it(&argc, &argv);
     printf("hello from %d\n", myid);
-    printf("numnodes is:%d | myid is:%d  int.init is :%d\n", numnodes, myid, ijk.init);
 
 /* num_used is the # of processors that are part of the new communicator */
 /* for this case hardwire to not include 1 processor */
@@ -58,8 +56,8 @@ int main(string[] args)
         mpi_err = MPI_Comm_group(MPI_COMM_WORLD, &old_group);
 /* create a new group from the old group */
 /* that will contain a subset of the  processors */
-        will_use= cast(int*)GC.malloc(num_used*int.sizeof, GC.BlkAttr.NO_SCAN);
-        for (ijk=0; ijk <= num_used-1; ijk++)
+        will_use = cast(int*)malloc(num_used * int.sizeof);
+        foreach(ijk; 0 .. num_used)
         {
             will_use[ijk] = ijk;
         }
@@ -74,7 +72,7 @@ int main(string[] args)
             get_input();
             mpi_err =  MPI_Barrier(MPI_COMM_WORLD);
             mpi_err =  MPI_Finalize();
-            exit(0);
+            return mpi_err;
         }
     }
     else
@@ -87,7 +85,6 @@ int main(string[] args)
     printf("back\n");
     mpi_err = MPI_Barrier(MPI_COMM_WORLD);
     return MPI_Finalize();
-
 }
 
 
@@ -100,10 +97,11 @@ void get_input()
    my_tag=0;
    i=0;
    IN=fopen("ex10.in","r");
+   assert(IN);
    while(i < 100)
    {
         printf("waiting for input:\n");
-        scanf("%i", &i);
+        fscanf(IN, "%i", &i);
         printf("i = %d\n",i);
         mpi_err = MPI_Send(cast(void*)&i, 1, MPI_INT, to, my_tag, MPI_COMM_WORLD);
    }
@@ -114,34 +112,35 @@ void pass_token(MPI_Comm THE_COMM_WORLD)
     int my_tag, j, i, to, from, ierr;
     MPI_Status status;
     int flag;
-    my_tag=1234;
-    j=0;
-    flag=1;
-    to=myid+1;
-    if(to == numnodes)to=0;
-    from=myid-1;
+    my_tag = 1234;
+    j = 0;
+    flag = 1;
+    to = myid+1;
+    if(to == numnodes)
+        to = 0;
+    from = myid-1;
     if(from < 0)
-        from=numnodes-1;
-    i=0;
+        from = numnodes-1;
+    i = 0;
     while(i < 100)
     {
         if(myid == j)
         {
             ierr = MPI_Iprobe(MPI_ANY_SOURCE, MPI_ANY_TAG,
-                              MPI_COMM_WORLD, &flag,&status);
+                    MPI_COMM_WORLD, &flag,&status);
             if(flag)
             {
                 ierr = MPI_Recv(cast(void*)&i, 1, MPI_INT, MPI_ANY_SOURCE, MPI_ANY_TAG,
-                                MPI_COMM_WORLD, &status);
+                        MPI_COMM_WORLD, &status);
                 printf("got i %d\n",i);
             }
             ierr = MPI_Send(cast(void*)&i, 1, MPI_INT, to, my_tag, THE_COMM_WORLD);
-            j=-1;
+            j = -1;
         }
         else
         {
             ierr = MPI_Recv(cast(void*)&i, 1, MPI_INT, from, my_tag, THE_COMM_WORLD, &status);
-            j=myid;
+            j = myid;
         }
     }
     if(myid < numnodes-1)

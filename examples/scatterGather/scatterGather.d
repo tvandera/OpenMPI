@@ -6,7 +6,7 @@
 ! to the root processor using MPI_Gather.  The root processor
 ! then prints the global sum.
 */
-import std.c.stdio;
+import core.stdc.stdio;
 import std.algorithm;
 import std.array;
 import std.string;
@@ -70,7 +70,7 @@ int main(string[] args)
       total=0;
       for(i=0; i<numnodes; i++)
         total = total + back_ray[i];
-      printf("results from all processors= %d \n ", total);
+      printf("results from all processors= %d\n", total);
     }
     return MPI_Finalize();
 }

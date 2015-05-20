@@ -17,7 +17,7 @@ int main(string[] args)
     const char** argv = array(map!toStringz(args)).ptr;
 
     int numprocs, rank, namelen;
-    char processor_name[MPI_MAX_PROCESSOR_NAME];
+    char[MPI_MAX_PROCESSOR_NAME] processor_name;
 
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &numprocs);

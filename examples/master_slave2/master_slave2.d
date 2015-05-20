@@ -4,8 +4,8 @@
 ///No warranty, even the implied warrenty of usefulness or safety.
 
 import std.stdio;
-import std.c.stdio;
-import std.c.string;
+import core.stdc.stdio;
+import core.stdc.string;
 import std.array;
 import std.algorithm;
 import std.string;
@@ -16,13 +16,13 @@ int main(string[] args)
     int argc = cast(int)args.length;
     const char** argv = array(map!toStringz(args)).ptr;
 
-    char idstr[128];
-    char buff[128];
-    char stuff[256];
+    char[128] idstr;
+    char[128] buff;
+    char[256] stuff;
 
 
     int numprocs, rank, namelen, i;
-    char processor_name[MPI_MAX_PROCESSOR_NAME];
+    char[MPI_MAX_PROCESSOR_NAME] processor_name;
 
     MPI_Status stat;
 
@@ -48,7 +48,7 @@ int main(string[] args)
         for(i = 1; i < numprocs; i++)
         {
             MPI_Recv(buff.ptr, 128, MPI_CHAR, i, 0, MPI_COMM_WORLD, &stat);
-            writeln(buff);
+            puts(buff.ptr);
         }
     }
     else
@@ -71,5 +71,3 @@ int main(string[] args)
 
    return MPI_Finalize();
 }
-
-

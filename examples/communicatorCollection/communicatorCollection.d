@@ -6,8 +6,8 @@ All processors with the "same color" will be in the same communicator.
 In this case the color is either 0 or 1 for even or odd processors.
 Index gives rank in new communicator.
 */
-import std.c.stdio;
-import std.c.stdlib;
+import core.stdc.stdio;
+import core.stdc.stdlib;
 import std.algorithm;
 import std.array;
 import std.string;

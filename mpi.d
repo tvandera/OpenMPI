@@ -135,7 +135,7 @@ alias MPI_Fint = ompi_fortran_integer_t;
 /* @OMPI_END_CONFIGURE_SECTION@ */
 
 /* include for ptrdiff_t */
-import std.c.stddef;
+import core.stdc.stddef;
 
 
 /*
@@ -221,8 +221,8 @@ struct ompi_status_public_t
   int MPI_SOURCE;
   int MPI_TAG;
   int MPI_ERROR;
-  int _count;
   int _cancelled;
+  size_t _count;
 }
 
 /*

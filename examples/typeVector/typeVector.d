@@ -4,8 +4,8 @@
 Shows how to use MPI_Type_vector to send noncontiguous blocks of data
  and MPI_Get_count and MPI_Get_elements to see the number of elements sent
 */
-import std.c.stdio;
-import std.c.stdlib;
+import core.stdc.stdio;
+import core.stdc.stdlib;
 import std.algorithm;
 import std.array;
 import std.string;
@@ -19,8 +19,8 @@ int main(string[] args)
 
     int myid, numprocs, mpi_err;
     immutable SIZE = 25;
-    double svect[SIZE];
-    double rvect[SIZE];
+    double[SIZE] svect;
+    double[SIZE] rvect;
     int i, bonk1, bonk2, numx, stride, extent;
     MPI_Datatype MPI_LEFT_RITE;
     MPI_Status status;

@@ -4,7 +4,7 @@
 ! This program shows how to use MPI_Alltoall.  Each processor
 ! send/rec a different  random number to/from other processors.
 */
-import std.c.stdio;
+import core.stdc.stdio;
 import std.algorithm;
 import std.array;
 import std.string;

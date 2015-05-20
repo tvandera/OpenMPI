@@ -1,6 +1,6 @@
 ///Found on http://geco.mines.edu/workshop/class2/examples/mpi/index.html
 
-import std.c.stdio;
+import core.stdc.stdio;
 import std.algorithm;
 import std.array;
 import std.string;
@@ -21,7 +21,7 @@ int main(string[] args)
 
     int i,myid, numprocs;
     int source,count;
-    int buffer[4];
+    int[4] buffer;
     MPI_Status status;
     MPI_Request request;
 

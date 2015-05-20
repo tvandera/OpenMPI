@@ -6,7 +6,7 @@
 ! to the root processor using MPI_Reduce.  The root processor
 ! then prints the global sum.
 */
-import std.c.stdio;
+import core.stdc.stdio;
 import std.algorithm;
 import std.array;
 import std.string;
@@ -56,14 +56,14 @@ int main(string[] args)
     total = 0;
     for(i=0; i<count; i++)
         total = total+myray[i];
-    printf("myid= %d total= %d\n ", myid, total);
+    printf("myid= %d total= %d\n", myid, total);
 /* send the local sums back to the root */
     mpi_err = MPI_Reduce(&total,    &gtotal, 1,  MPI_INT,
                         MPI_SUM, mpi_root, MPI_COMM_WORLD);
 /* the root prints the global sum */
     if(myid == mpi_root)
     {
-      printf("results from all processors= %d \n ",gtotal);
+      printf("results from all processors= %d\n",gtotal);
     }
     return MPI_Finalize();
 }

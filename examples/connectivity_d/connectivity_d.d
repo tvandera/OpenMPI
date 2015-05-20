@@ -12,7 +12,7 @@ import std.array;
 //#include <errno.h>
 //#include <stdio.h>
 //#include <stdlib.h>
-import std.c.stdlib;
+import core.stdc.stdlib;
 //#include <string.h>
 import std.string;
 //#include <netdb.h>
@@ -33,7 +33,7 @@ int main(string[] args)
     int         i;
     int         j;
     int         length;
-    char        name[MPI_MAX_PROCESSOR_NAME+1];
+    char[MPI_MAX_PROCESSOR_NAME + 1]        name;
 
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
