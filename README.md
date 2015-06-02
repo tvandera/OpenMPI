@@ -12,6 +12,10 @@ You will have to sort out linking yourself, perhaps using '''mpicc --showme:link
 
 *you could also add the linker arguments to a local copy of this repository and configure dub, either globally or locally to a project, to use the local copy.
 
+Obviously if you are just importing mpi.d directly or through another build system, you would have to handle the linking in that scheme.
+
+An alternative approach would be generate an object file or static library in D, then link the final executable using ```mpicc```, passing the relevant library flags to link to phobos and any other D libraries you are using. Whatever works easiest for you.
+
 Possible problems
 =================
-There could well be bits of mpi.h that are missing, this is a fork of an old repository and hasn't been thoroughly checked. If you find anything, please tell! The same goes for any simple program that you know should work but misteriously fails.
+There could well be bits of mpi.h that are missing, this is a fork of an old repository and hasn't been thoroughly checked. If you find anything, please tell! The same goes for any simple program that you know should work but mysteriously fails.
