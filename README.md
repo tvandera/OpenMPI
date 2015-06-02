@@ -18,4 +18,4 @@ An alternative approach would be generate an object file or static library in D,
 
 Possible problems
 =================
-There could well be bits of mpi.h that are missing, this is a fork of an old repository and hasn't been thoroughly checked. If you find anything, please tell! The same goes for any simple program that you know should work but mysteriously fails.
+There could well be bits of mpi.h that are missing, this is a fork of an old repository and hasn't been thoroughly checked apart from the contents of the ```examples``` directory. If you find anything isn't where it should be, please tell! The same goes for any simple program that you know should work but mysteriously fails.
