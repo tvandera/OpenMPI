@@ -17,7 +17,7 @@
  *
  * $HEADER$
  */
-module OpenMPI.mpi;
+module mpi;
 
 /* Define to 1 if you have the ANSI C header files. */
 immutable OMPI_STDC_HEADERS = 1;
