@@ -1,7 +1,5 @@
 # OpenMPI
-D interface to Open MPI
-
-Bindings to OpenMPI.
+D bindings to OpenMPI.
 
 How to use:
 ==========
