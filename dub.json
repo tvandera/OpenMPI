@@ -2,8 +2,6 @@
     "name": "mpi",
     "authors": ["Jude Young", "John Colvin"],
     
-    "importPaths": ["."],
-    
     "configurations": [
         {
             "name": "default",
