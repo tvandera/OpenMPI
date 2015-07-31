@@ -12,5 +12,10 @@
             "targetType": "library",
             "sourcePaths": ["."]
         }
-    ]
+    ],
+    "buildTypes": {
+        "travis": {
+            "libs": ["mpi"]
+        }
+    }
 }
