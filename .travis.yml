@@ -13,6 +13,8 @@ addons:
   apt:
     packages:
       - libopenmpi-dev
+      - openmpi-bin
 
 script:
-  dub test --build=travis --compiler=${DC}
+ - dub test --config=travis --compiler=${DC}
+ - for ex in $(ls -d examples/*/); do dub test --config=travis --root=$ex --compiler=${DC}; done

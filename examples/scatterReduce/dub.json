@@ -1,8 +1,20 @@
 {
-	"name": "scatterreduce",
-	"targetType": "executable",
-	"sourcePaths": ["."],
-	"dependencies": {
-		"mpi": {"path": "../.."}
-	}
+    "name": "scatterreduce",
+    "targetType": "executable",
+    "sourcePaths": ["."],
+    "dependencies": {
+        "mpi": {"path": "../.."}
+    },
+
+    "configurations": [
+        {
+            "name": "default"
+        },
+        {
+            "name": "travis",
+            "subConfigurations": {
+                "mpi": "travis"
+            }
+        }
+    ]
 }

@@ -1,8 +1,20 @@
 {
-	"name": "gatherv",
-	"targetType": "executable",
-	"sourcePaths": ["."],
-	"dependencies": {
-		"mpi": {"path": "../.."}
-	}
+    "name": "gatherv",
+    "targetType": "executable",
+    "sourcePaths": ["."],
+    "dependencies": {
+        "mpi": {"path": "../.."}
+    },
+
+    "configurations": [
+        {
+            "name": "default"
+        },
+        {
+            "name": "travis",
+            "subConfigurations": {
+                "mpi": "travis"
+            }
+        }
+    ]
 }
