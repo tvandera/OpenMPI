@@ -17,5 +17,14 @@
         "travis": {
             "libs": ["mpi"]
         }
+        "DSddox": {
+            "buildOptions": ["syntaxOnly"],
+            "dflags": ["-c", "-Df__dummy.html", "-Xfdocs.json"],
+            "postBuildCommands": [
+                "rm -rf site/api",
+                "ddox filter --min-protection=Protected docs.json",
+                "ddox generate-html --navigation-type=ModuleTree docs.json site/api"
+            ]
+        }
     }
 }
