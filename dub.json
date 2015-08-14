@@ -1,18 +1,7 @@
 {
     "name": "mpi",
     "authors": ["Jude Young", "John Colvin"],
-    
-    "configurations": [
-        {
-            "name": "default",
-            "targetType": "sourceLibrary"
-        },
-        {
-            "name": "docs",
-            "targetType": "library",
-            "sourcePaths": ["."]
-        }
-    ],
+
     "buildTypes": {
         "travis": {
             "libs": ["mpi"]
