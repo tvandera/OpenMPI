@@ -3,12 +3,13 @@ module mpi.util;
 /**
  * Convert D's string[] args to a correct C char** argv.
  */
-auto toArgv(string[] args)
+char** toArgv(string[] args)
 {
-    import std.string : toStringz;
-    auto argv = new immutable(char)*[args.length + 1];
+    auto argv = new char*[args.length + 1];
     foreach(i, arg; args)
-        argv[i] = arg.toStringz;
+    {
+        argv[i] = (arg.dup ~ '\0').ptr;
+    }
     argv[args.length] = null;
     return argv.ptr;
 }

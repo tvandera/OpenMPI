@@ -8,13 +8,14 @@ import std.array;
 import std.algorithm;
 import std.string;
 import mpi;
+import mpi.util;
 //#include <unistd.h>
 
 int main(string[] args)
 {   //Converts D-style args to C-style.
     //pretty decent, since MPI will pass this along to the other processes
     int argc = cast(int)args.length;
-    const char** argv = array(map!toStringz(args)).ptr;
+    auto argv = args.toArgv(); 
 
     int numprocs, rank, namelen;
     char[MPI_MAX_PROCESSOR_NAME] processor_name;

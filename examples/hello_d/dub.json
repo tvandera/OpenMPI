@@ -4,17 +4,5 @@
     "sourcePaths": ["."],
     "dependencies": {
         "mpi": {"path": "../.."}
-    },
-
-    "configurations": [
-        {
-            "name": "default"
-        },
-        {
-            "name": "travis",
-            "subConfigurations": {
-                "mpi": "travis"
-            }
-        }
-    ]
+    }
 }

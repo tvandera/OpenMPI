@@ -11,13 +11,14 @@ import std.string;
 import std.random;
 import core.memory;
 import mpi;
+import mpi.util;
 
 /* globals */
 int numnodes, myid, mpi_err;
 immutable mpi_root = 0;
 /* end module  */
 
-void init_it(int  *argc, in char ***argv)
+void init_it(int* argc, char*** argv)
 {
     mpi_err = MPI_Init(argc, argv);
     mpi_err = MPI_Comm_size(MPI_COMM_WORLD, &numnodes );
@@ -27,7 +28,7 @@ void init_it(int  *argc, in char ***argv)
 int main(string[] args)
 {
     int argc = cast(int)args.length;
-    const char** argv = array(map!toStringz(args)).ptr;
+    auto argv = args.toArgv();
 
     int* sray, rray;
     int* sdisp, scounts, rdisp, rcounts;

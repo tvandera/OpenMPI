@@ -5,6 +5,8 @@ import std.algorithm;
 import std.array;
 import std.string;
 import mpi;
+import mpi.util;
+
 //#include <stdio.h>
 //#include <stdlib.h>
 //#include <mpi.h>
@@ -17,7 +19,7 @@ This is a simple broadcast program in MPI
 int main(string[] args)
 {
     int argc = cast(int)args.length;
-    const char** argv = array(map!toStringz(args)).ptr;
+    auto argv = args.toArgv;
 
     int i,myid, numprocs;
     int source,count;

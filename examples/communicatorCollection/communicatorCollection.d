@@ -12,12 +12,12 @@ import std.algorithm;
 import std.array;
 import std.string;
 import mpi;
-
+import mpi.util;
 
 int main(string[] args)
 {
     int argc = cast(int)args.length;
-    const char** argv = array(map!toStringz(args)).ptr;
+    auto argv = args.toArgv; 
 
     int myid, numprocs;
     int color, Zero_one, new_id, new_nodes;
