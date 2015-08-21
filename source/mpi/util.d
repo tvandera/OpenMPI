@@ -24,5 +24,5 @@ unittest
         assert(argv[i][0 .. args[i].length] == args[i]);
         assert(argv[i][args[i].length] == 0);
     }
-    assert(argv[args.length] == 0);
+    assert(argv[args.length] == null);
 }
