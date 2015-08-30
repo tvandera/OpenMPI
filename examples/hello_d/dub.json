@@ -1,8 +1,8 @@
 {
-	"name": "hello_d",
-	"targetType": "executable",
-	"sourcePaths": ["."],
-	"dependencies": {
-		"mpi": {"path": "../.."}
-	},
+    "name": "hello_d",
+    "targetType": "executable",
+    "sourcePaths": ["."],
+    "dependencies": {
+        "mpi": {"path": "../.."}
+    }
 }

@@ -1,8 +1,8 @@
 {
-	"name": "communicatorcollection",
-	"targetType": "executable",
-	"sourcePaths": ["."],
-	"dependencies": {
-		"mpi": {"path": "../.."}
-	}
+    "name": "communicatorcollection",
+    "targetType": "executable",
+    "sourcePaths": ["."],
+    "dependencies": {
+        "mpi": {"path": "../.."}
+    }
 }

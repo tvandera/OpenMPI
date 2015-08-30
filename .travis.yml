@@ -1,5 +1,14 @@
 sudo: false
 
+os:
+ - linux
+ - osx
+
+matrix:
+  allow_failures:
+   - os: osx
+     d: gdc
+
 language: d
 
 d:
@@ -13,6 +22,21 @@ addons:
   apt:
     packages:
       - libopenmpi-dev
+      - openmpi-bin
+      - hwloc
+
+install:
+ - if [ $TRAVIS_OS_NAME == osx ];
+   then
+     brew update;
+     brew upgrade --all --quiet;
+     brew install openmpi;
+   fi
 
 script:
-  dub test --build=travis --compiler=${DC}
+ - dub build :configure --compiler=${DC}
+ - dub build :splice --compiler=${DC}
+ - gen/setup.sh
+ - dub test --compiler=${DC}
+ - cd examples
+ - for ex in $(ls -d *); do cd $ex; dub build --build=unittest --compiler=${DC}; mpirun -c 3 $(echo $ex | tr '[:upper:]' '[:lower:]'); cd ../; done

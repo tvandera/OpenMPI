@@ -12,11 +12,12 @@ import std.string;
 import std.array;
 import std.algorithm;
 import mpi;
+import mpi.util;
 
 int main(string[] args)//int argc, char* argv[])
 {
     int argc = cast(int)args.length;
-    const char** argv = array(map!toStringz(args)).ptr;
+    auto argv = args.toArgv(); 
 
     int rank;
     int size;

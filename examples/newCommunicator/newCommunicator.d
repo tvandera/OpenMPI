@@ -19,6 +19,7 @@ import std.array;
 import std.string;
 import core.memory;
 import mpi;
+import mpi.util;
 
 /* global variables */
 int numnodes, myid, mpi_err;
@@ -26,7 +27,7 @@ enum mpi_root = 0;
 /* end of global variables  */
 
 
-void init_it(int* argc, in char*** argv)
+void init_it(int* argc, char*** argv)
 {
     mpi_err = MPI_Init(argc,argv);
     mpi_err = MPI_Comm_size( MPI_COMM_WORLD, &numnodes );
@@ -36,7 +37,7 @@ void init_it(int* argc, in char*** argv)
 int main(string[] args)
 {
     int argc = cast(int)args.length;
-    const char** argv = array(map!toStringz(args)).ptr;
+    auto argv = args.toArgv();
 
 /* poe a.out -procs 3 -rmpool 1 */
     int* will_use;

@@ -10,11 +10,12 @@ import std.array;
 import std.algorithm;
 import std.string;
 import mpi;
+import mpi.util;
 
 int main(string[] args)
 {
     int argc = cast(int)args.length;
-    const char** argv = array(map!toStringz(args)).ptr;
+    auto argv = args.toArgv();
 
     char[128] idstr;
     char[128] buff;

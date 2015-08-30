@@ -7,6 +7,7 @@ import std.array;
 import std.string;
 import core.memory;
 import mpi;
+import mpi.util;
 /*
 ! This program shows how to use MPI_Gatherv.  Each processor sends a
 ! different amount of data to the root processor.  We use MPI_Gather
@@ -17,7 +18,7 @@ int numnodes, myid, mpi_err;
 enum mpi_root = 0;
 /* end of globals */
 
-void init_it(int* argc, in char*** argv) {
+void init_it(int* argc, char*** argv) {
     mpi_err = MPI_Init(argc, argv);
     mpi_err = MPI_Comm_size(MPI_COMM_WORLD, &numnodes);
     mpi_err = MPI_Comm_rank(MPI_COMM_WORLD, &myid);
@@ -26,7 +27,7 @@ void init_it(int* argc, in char*** argv) {
 void main(string[] args)
 {
     int argc = cast(int)args.length;
-    const(char**) argv = args.map!toStringz.array.ptr;
+    auto argv = args.toArgv();
 
     int* will_use;
     int* displacements, counts, allray;

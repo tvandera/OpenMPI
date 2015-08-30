@@ -19,11 +19,12 @@ import std.string;
 //#include <unistd.h>
 //#include <mpi.h>
 import mpi;
+import mpi.util;
 
 int main(string[] args)
 {
     int argc = cast(int)args.length;
-    const char** argv = array(map!toStringz(args)).ptr;
+    auto argv = args.toArgv();
 
     MPI_Status  status;
     bool        verbose = false;

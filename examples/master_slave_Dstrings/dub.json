@@ -1,8 +1,8 @@
 {
-	"name": "master_slave_dstrings",
-	"targetType": "executable",
-	"sourcePaths": ["."],
-	"dependencies": {
-		"mpi": {"path": "../.."}
-	}
+    "name": "master_slave_dstrings",
+    "targetType": "executable",
+    "sourcePaths": ["."],
+    "dependencies": {
+        "mpi": {"path": "../.."}
+    }
 }

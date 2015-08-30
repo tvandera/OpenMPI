@@ -12,6 +12,7 @@ import std.array;
 import std.string;
 import core.memory;
 import mpi;
+import mpi.util;
 
 /*  globals */
 int numnodes, myid, mpi_err;
@@ -19,7 +20,7 @@ immutable mpi_root = 0;
 /* end globals  */
 
 
-void init_it(int  *argc, in char ***argv) {
+void init_it(int* argc, char*** argv) {
     mpi_err = MPI_Init(argc,argv);
     mpi_err = MPI_Comm_size( MPI_COMM_WORLD, &numnodes );
     mpi_err = MPI_Comm_rank(MPI_COMM_WORLD, &myid);
@@ -28,7 +29,7 @@ void init_it(int  *argc, in char ***argv) {
 int main(string[] args)
 {
     int argc = cast(int)args.length;
-    const char** argv = array(map!toStringz(args)).ptr;
+    auto argv = args.toArgv();
 
     int* myray, send_ray, back_ray;
     int count;
