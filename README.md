@@ -3,17 +3,16 @@ D bindings to OpenMPI.
 
 How to use:
 ==========
-use ```source/mpi.d``` directly or as a dependency through dub.
+This is a slightly unusual dub package, in that it requires some extra steps to use. The first time you try and use this package as a dependency (unless you specify the "noLibs" configuration) you will get an error message saying that it has not been configured. Follow the instructions and hopefully everything will just work. Essentially all that is necessary is to run ```dub build :configure; dub build :splice; gen/setup.sh```.
 
-This package is just headers, it deliberately doesn't instruct dub to link to anything. This is because there is such variation in what MPI needs to link to across different systems.
-You will have to sort out linking yourself, perhaps using ```mpicc --showme:link``` to find out what needs to be linked to and where to find it and putting that in your dub.json* (see "libs" and "lflags" at http://code.dlang.org/package-format)
+Here's what to do if it doesn't work out:
 
-*you could also add the linker arguments to a local copy of this repository and configure dub, either globally or locally to a project, to use the local copy.
+Option 1:
+Manually tweak the dub.json file to get it to work with your OpenMPI system. This probably involves changing the ```"dflags"``` and ```"lflags"``` fields. Instead of editing the file in the ```dub``` cache (e.g. ```~/.dub/packages/```), you might want to make your own copy to make it more permanant. Using ```dub add-local``` or ```dub add-path``` will allow you to locally register this copy with ```dub``` so it works automatically for all your projects.
 
-Obviously if you are just importing ```mpi.d``` directly or through another build system, you would have to handle the linking in that scheme.
+Option 2:
+Use the "noLibs" configuration and work out how to link to openmpi yourself (```mpicc --showme:link``` will show you what is necessary)
 
-An alternative approach would be generate an object file or static library in D, then link the final executable using ```mpicc```, passing the relevant library flags to link to phobos and any other D libraries you are using. Whatever works easiest for you.
-
-Possible problems
-=================
-There could well be bits of mpi.h that are missing, this is a fork of an old repository and hasn't been thoroughly checked apart from the contents of the ```examples``` directory. If you find anything isn't where it should be, please tell! The same goes for any simple program that you know should work but mysteriously fails.
+Status:
+=======
+At the moment everything should work fine on OpenMPI versions 1.4.3 upwards, not including pre-release versions. Other versions may work, but haven't been tested. However, please do report any problems you have, on any version of OpenMPI and any system, however old or new.
