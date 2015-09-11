@@ -3,7 +3,7 @@ D bindings to OpenMPI.
 
 How to use:
 ==========
-This is a slightly unusual dub package, in that it requires some extra steps to use. The first time you try and use this package as a dependency (unless you specify the "noLibs" configuration) you will get an error message saying that it has not been configured. Follow the instructions and hopefully everything will just work. Essentially all that is necessary is to run ```dub build :configure; dub build :splice; gen/setup.sh```.
+This is a slightly unusual dub package, in that it requires some extra steps to use. The first time you try and use this package as a dependency (unless you specify the "noLibs" configuration) you will get an error message saying that it has not been configured. Follow the instructions and hopefully everything will just work. Essentially all that is necessary is to run ```gen/setup.sh```.
 
 Here's what to do if it doesn't work out:
 
