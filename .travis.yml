@@ -29,8 +29,7 @@ install:
  - if [ $TRAVIS_OS_NAME == osx ];
    then
      brew update;
-     brew upgrade --all --quiet;
-     brew install openmpi;
+     brew upgrade openmpi;
    fi
 
 script:
