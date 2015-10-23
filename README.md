@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/DlangScience/OpenMPI.svg?branch=master)](https://travis-ci.org/DlangScience/OpenMPI)
 # OpenMPI
 D bindings to OpenMPI.
 
