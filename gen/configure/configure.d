@@ -63,7 +63,7 @@ void main(string[] args)
     {
         if (val is null)
         {
-            switch (val)
+            switch (key)
             {
             case "OMPI_MPI_AINT_TYPE":
                 writeln("alias OMPI_MPI_AINT_TYPE = MPI_Aint;"); 
