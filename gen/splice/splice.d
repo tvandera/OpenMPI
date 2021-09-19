@@ -3,7 +3,7 @@ import std.stdio, std.algorithm, std.range, std.string;
 
 void main(string[] args)
 {
-    auto pack = readText(args[1]);
+    string pack = readText(args[1]);
     auto cfg = readText(args[2]).splitLines;
 
     auto r0 = pack.findSplitAfter("// BEGIN AUTO\n");

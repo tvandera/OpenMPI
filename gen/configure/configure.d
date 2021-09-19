@@ -4,7 +4,7 @@ import std.file : readText;
 
 void main(string[] args)
 {
-    auto mpi = args[1].readText();
+    string mpiHeader = args[1].readText();
 
     Nullable!(int)[string] intEntries;
     foreach(m; ints)
@@ -18,7 +18,7 @@ void main(string[] args)
         typeEntries[m] = null;
     }
 
-    foreach(line; mpi.splitLines())
+    foreach(line; mpiHeader.splitLines())
     {
         line = line.byChar.map!(c => c == '\t' ? ' ' : c).to!string;
         auto r = line.findSplitAfter("#define")[1].stripLeft.findSplit(" ");
@@ -39,7 +39,10 @@ void main(string[] args)
     foreach(key, val; intEntries)
     {
         if(val.isNull)
+        {
             stderr.writeln("no entry found for " ~ key);
+            writeln("enum " ~ key ~ " = 0;");
+        }
         else
             writeln("enum " ~ key ~ " = " ~ val.to!string ~ ';');
     }
