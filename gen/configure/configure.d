@@ -66,7 +66,7 @@ void main(string[] args)
             switch (key)
             {
             case "OMPI_MPI_AINT_TYPE":
-                writeln("alias OMPI_MPI_AINT_TYPE = MPI_Aint;"); 
+                writeln("alias OMPI_MPI_AINT_TYPE = ptrdiff_t;"); 
                 break;
             case "OMPI_MPI_COUNT_TYPE":
                 writeln("alias OMPI_MPI_COUNT_TYPE = long;"); 
