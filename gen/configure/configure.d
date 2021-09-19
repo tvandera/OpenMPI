@@ -36,20 +36,45 @@ void main(string[] args)
         }
     }
 
+    // The following are not found in my OpenMPI
+    // OMPI_SIZEOF_BOOL
+    // OMPI_SIZEOF_INT
+    // OMPI_HAVE_SYS_SYNCH_H
+    // OMPI_STDC_HEADERS
+    // OPAL_SIZEOF_BOOL
+    // OMPI_BUILD_CXX_BINDINGS
+    // OMPI_HAVE_LONG_LONG
+    // OPAL_HAVE_SYS_SYNCH_H
+    // OMPI_PARAM_CHECK
+    // OMPI_HAVE_SYSTIME_H
+    // OPAL_SIZEOF_INT
+    // OMPI_MPI_COUNT_TYPE is used
+    // OMPI_PTRDIFF_TYPE
+    // OMPI_MPI_AINT_TYPE is used
+
     foreach(key, val; intEntries)
     {
-        if(val.isNull)
-        {
-            stderr.writeln("no entry found for " ~ key);
-            writeln("enum " ~ key ~ " = 0;");
-        }
+        if (val.isNull)
+            stderr.writeln("enum " ~ key ~ " = ???;");
         else
             writeln("enum " ~ key ~ " = " ~ val.to!string ~ ';');
     }
     foreach(key, val; typeEntries)
     {
-        if(val is null)
-            stderr.writeln("no entry found for " ~ key);
+        if (val is null)
+        {
+            switch (val)
+            {
+            case "OMPI_MPI_AINT_TYPE":
+                writeln("alias OMPI_MPI_AINT_TYPE = MPI_Aint;"); 
+                break;
+            case "OMPI_MPI_COUNT_TYPE":
+                writeln("alias OMPI_MPI_COUNT_TYPE = long;"); 
+                break;
+            default:
+                stderr.writeln("no entry found for " ~ key);
+            }
+        }
         else
             writeln("alias " ~ key ~ " = " ~ val ~ ';');
     }
@@ -62,10 +87,10 @@ immutable ints = [
     "OPAL_HAVE_ATTRIBUTE_DEPRECATED",
     "OPAL_HAVE_ATTRIBUTE_DEPRECATED_ARGUMENT",
     "OPAL_HAVE_SYS_TIME_H",
-    "OPAL_HAVE_SYS_SYNCH_H",
+    // "OPAL_HAVE_SYS_SYNCH_H",
     "OPAL_HAVE_LONG_LONG",
-    "OPAL_SIZEOF_BOOL",
-    "OPAL_SIZEOF_INT",
+    // "OPAL_SIZEOF_BOOL",
+    // "OPAL_SIZEOF_INT",
     "OPAL_MAX_DATAREP_STRING",
     "OPAL_MAX_ERROR_STRING",
     "OPAL_MAX_INFO_KEY",
@@ -90,9 +115,9 @@ immutable ints = [
     "HAVE_DOUBLE__COMPLEX",
     "HAVE_LONG_DOUBLE__COMPLEX",
     "OMPI_MPI_OFFSET_SIZE",
-    "OMPI_BUILD_CXX_BINDINGS",
+    // "OMPI_BUILD_CXX_BINDINGS",
     "OMPI_CXX_SUPPORTS_2D_CONST_CAST",
-    "OMPI_PARAM_CHECK",
+    // "OMPI_PARAM_CHECK",
     "OMPI_HAVE_CXX_EXCEPTION_SUPPORT",
     "OMPI_MAJOR_VERSION",
     "OMPI_MINOR_VERSION",
@@ -106,12 +131,12 @@ immutable ints = [
     "OMPI_WANT_F77_BINDINGS",
     "OMPI_WANT_F90_BINDINGS",
     //OPENMPI version 1.4.3
-    "OMPI_STDC_HEADERS",
-    "OMPI_HAVE_SYSTIME_H",
-    "OMPI_HAVE_SYS_SYNCH_H",
-    "OMPI_HAVE_LONG_LONG",
-    "OMPI_SIZEOF_BOOL",
-    "OMPI_SIZEOF_INT"
+    // "OMPI_STDC_HEADERS",
+    // "OMPI_HAVE_SYSTIME_H",
+    // "OMPI_HAVE_SYS_SYNCH_H",
+    // "OMPI_HAVE_LONG_LONG",
+    // "OMPI_SIZEOF_BOOL",
+    // "OMPI_SIZEOF_INT"
     ];
 
 immutable types = [
@@ -124,5 +149,5 @@ immutable types = [
     "ompi_fortran_integer_t",
     "MPI_Fint",
     //OPENMPI version 1.4.3
-    "OMPI_PTRDIFF_TYPE"
+    // "OMPI_PTRDIFF_TYPE"
 ];
