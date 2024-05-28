@@ -32,7 +32,9 @@ void main(string[] args)
             auto pT = r[0] in typeEntries;
             if(r[2] == "long long") r[2] = "long";
             else if(r[2] == "long") r[2] = "c_long";
-            if(pT) *pT = r[2];
+            if(pT && *pT == null) {
+                *pT = r[2];
+            }
         }
     }
 
@@ -66,10 +68,10 @@ void main(string[] args)
             switch (key)
             {
             case "OMPI_MPI_AINT_TYPE":
-                writeln("alias OMPI_MPI_AINT_TYPE = ptrdiff_t;"); 
+                writeln("alias OMPI_MPI_AINT_TYPE = ptrdiff_t;");
                 break;
             case "OMPI_MPI_COUNT_TYPE":
-                writeln("alias OMPI_MPI_COUNT_TYPE = long;"); 
+                writeln("alias OMPI_MPI_COUNT_TYPE = long;");
                 break;
             default:
                 stderr.writeln("no entry found for " ~ key);
