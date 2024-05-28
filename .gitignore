@@ -1,0 +1,6 @@
+libmpi.a
+mpi-test-with-libs
+mpi_configure
+mpi_splice
+test.c
+source/mpi/package.d
